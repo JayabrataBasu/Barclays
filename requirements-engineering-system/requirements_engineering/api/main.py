@@ -4,6 +4,7 @@ from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from typing import List, Optional
+from .routers import documents  
 
 app = FastAPI(title="Requirements Engineering System")
 
@@ -15,6 +16,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+#include routers
+app.include_router(documents.router)
 
 @app.get("/")
 def read_root():
